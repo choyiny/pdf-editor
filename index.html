@@ -1,0 +1,131 @@
+<style>
+    
+    body {
+        background-color: grey;
+    }
+    
+    .toolbar {
+        position: fixed;
+        height: 410px;
+        width: 61px;
+        background-color: #d2d2d2;
+        right: 538px;
+        top: 36px;
+        border-radius: 10px;
+    }
+    
+    .action-group {
+        height: 60px;
+        width: 170px;
+    }
+    
+    .action-button {
+        border: 1px solid black;
+        border-radius: 28px;
+        height: 41px;
+        width: 41px;
+        font-size: 26px;
+        font-weight: bold;
+        margin: 10px;
+        background-color: #91ff00;
+        cursor: pointer;
+    }
+    
+    .action-text {
+        display: inline-block;
+        color: white;
+    }
+    
+    .output {
+        position: fixed;
+        right: 10px;
+        background-color: red;
+        height: 340px;
+        width: 402px;
+        top: 10px;
+    }
+    
+    .output textarea {
+        height: 100%;
+        width: 100%;
+    }
+
+
+</style>
+
+
+<style>
+    html,body {
+        margin: 0;
+        height: 1200px;
+    }
+    
+    
+    .page1 {
+        background-image: url("./ccac_page1.png");
+        background-repeat: no-repeat;
+        height: 100%;
+        width: ;
+    }
+
+    .page1 p {
+        position: absolute;
+        font-size: 15px;
+        padding: 0;
+        margin: 0;
+    }
+
+</style>
+<html>
+    <body>
+        <div class="toolbar">
+            <div class="action-group">
+                <button class="action-button" id="new-text">+</button>
+                <p class="action-text">New Textbox</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button" id="export">x</button>
+                <p class="action-text">Export</p>
+            </div>
+            
+        </div>
+        <div class="output">
+            <textarea></textarea>
+        
+        </div>
+        <div class="exportable">
+            <div class="page1">
+                
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(document).ready(function () {
+    $( ".draggable" ).draggable();
+    
+    // add new textbox and make it draggable
+    $("#new-text").click(function () {
+        $(".page1").append("\n<p style='top:100px;left:100px' class='draggable' contenteditable>New Textbox</p>\n");
+        $(".draggable").draggable();
+    });
+    
+    $(".page1").click(function () {
+        exportThis();
+    });
+    
+    // export all the positions of the new textboxes
+    $("#export").click(function () {
+       exportThis();
+    });
+});
+    
+function exportThis() {
+    $(".output textarea").val($(".exportable").html());
+}
+</script>
