@@ -1,0 +1,49 @@
+body {
+    background-color: grey;
+}
+
+.toolbar {
+    position: fixed;
+    height: 410px;
+    width: 61px;
+    background-color: #d2d2d2;
+    right: 538px;
+    top: 36px;
+    border-radius: 10px;
+}
+
+.action-group {
+    height: 60px;
+    width: 170px;
+}
+
+.action-button {
+    border: 1px solid black;
+    border-radius: 28px;
+    height: 41px;
+    width: 41px;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px;
+    background-color: #91ff00;
+    cursor: pointer;
+}
+
+.action-text {
+    display: inline-block;
+    color: white;
+}
+
+.output {
+    position: fixed;
+    right: 10px;
+    background-color: red;
+    height: 340px;
+    width: 402px;
+    top: 10px;
+}
+
+.output textarea {
+    height: 100%;
+    width: 100%;
+}
