@@ -20,7 +20,7 @@ $(document).ready(function () {
 // Cleans all non-style related tags from the html to output
 function cleanHTML(html) {
     var divNode = $.parseHTML(html)[0];
-    var output = "<div class=" + divNode.className + ">\n";
+    var output = '<div class="' + divNode.className + '">\n';
 
     $.each(divNode.children, function (index, node) {
         for (let i; i = node.attributes.length - 1; i--) {
