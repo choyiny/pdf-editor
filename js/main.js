@@ -41,6 +41,8 @@ $(document).ready(function () {
         setActiveTool("delete");
         $(".exportable").css("cursor", "default");
 
+        // Click twice if necessary as to refresh the bounds for any new items added
+        $("#showbounds").click();
         if (!$("#showbounds").hasClass("selected")) {
             $("#showbounds").click();
         }
@@ -126,7 +128,7 @@ function tickCheckbox(top, left) {
 }
 
 function addTextbox(top, left) {
-    var textboxHTML = "\n<p style='top: " + top + "px;left: " + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
+    var textboxHTML = "\n<p style='top: " + top + "px; left: " + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
     $(".page1").append(textboxHTML);
     $(".draggable").draggable();
 }
@@ -134,7 +136,7 @@ function addTextbox(top, left) {
 function addTextArea(top, left, bottom, right) {
     var width = right - left;
     var height = bottom - top;
-    var textAreaHTML = "\n<p style='top: " + top + "px;left: " + left + "px; width: " + width + "px; height: " + height + "px;'  class='draggable textfield' contenteditable>New Text Area</p>"
+    var textAreaHTML = "\n<p style='top: " + top + "px; left: " + left + "px; width: " + width + "px; height: " + height + "px;'  class='draggable textfield' contenteditable>New Text Area</p>"
     $(".page1").append(textAreaHTML);
     $(".draggable").draggable();
 }
@@ -158,7 +160,9 @@ function cleanHTML(element) {
     divNode.find("p").map(function (index, element) {
         element.innerHTML = "<%= " + element.innerHTML + " %>"
     });
-    return divNode[0].innerHTML.replace(new RegExp("&lt;", "g"), "<").replace(new RegExp("&gt;", "g"), ">");
+    return divNode[0].innerHTML.replace(new RegExp("&lt;", "g"), "<")
+        .replace(new RegExp("&gt;", "g"), ">")
+        .replace(new RegExp("\n{2,}", "g"), "\n");
 }
 
 function exportThis() {
