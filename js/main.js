@@ -40,6 +40,10 @@ $(document).ready(function () {
     $("#deletetool").click(function () {
         setActiveTool("delete");
         $(".exportable").css("cursor", "default");
+
+        if (!$("#showbounds").hasClass("selected")) {
+            $("#showbounds").click();
+        }
     });
 
     $("#areatool").click(function () {
