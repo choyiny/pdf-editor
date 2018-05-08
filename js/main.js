@@ -44,6 +44,9 @@ function registerPageClickEvent() {
             case "pointertool":
                 break;
             case "deletetool":
+                if (event.target.tagName == "P") {
+                    event.target.remove();
+                }
                 break;
             case "boxtool":
                 if (event.target == this) {
