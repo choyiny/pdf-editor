@@ -15,13 +15,44 @@
                 <button class="action-button" id="export">x</button>
                 <p class="action-text">Export</p>
             </div>
-
+            <div class="action-group">
+                <button class="action-button" id="reset">R</button>
+                <p class="action-text">Reset form</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button tool" id="pointertool">P</button>
+                <p class="action-text">Pointer tool</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button tool" id="boxtool">T</button>
+                <p class="action-text">Textbox tool</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button tool" clicknum=1 id="areatool">A</button>
+                <p class="action-text">Textarea tool</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button tool" id="deletetool">D</button>
+                <p class="action-text">Delete tool</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button tool" id="checktool">&#10003;</button>
+                <p class="action-text">Checkbox tool</p>
+            </div>
+            <div class="action-group">
+                <button class="action-button" id="showbounds">B</button>
+                <p class="action-text">Show bounds?</p>
+            </div>
         </div>
         <div class="output">
             <textarea></textarea>
-
+            <div class="imgform">
+                <input id="imgfield" type="text" placeholder="Paste image url here"></input>
+                <button id="loadimg">Load Image</button>
+                <button id="defaultimg">Back to Default</button>
+            </div>
         </div>
         <div class="exportable"><div class="page1"></div></div>
-        <script src="/js/main.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
