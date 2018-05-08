@@ -24,6 +24,9 @@ $(document).ready(function () {
 
 function registerPageClickEvent() {
     $(".page1").click(function (event) {
+        if (event.target == this) {
+            addTextbox(event.pageY, event.pageX);
+        }
         exportThis();
     });
 }
