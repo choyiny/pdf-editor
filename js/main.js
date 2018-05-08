@@ -2,7 +2,7 @@ $(document).ready(function () {
     // Load document from storage if available
     loadDocument();
     registerPageClickEvent();
-    setActiveTool("pointer")();
+    setActiveTool("pointer");
 
     $( ".draggable" ).draggable();
 
@@ -22,10 +22,25 @@ $(document).ready(function () {
        exportThis();
     });
 
-    $("#pointertool").click(setActiveTool("pointer"));
-    $("#boxtool").click(setActiveTool("box"));
-    $("#deletetool").click(setActiveTool("delete"));
-    $("#areatool").click(setActiveTool("area"));
+    $("#pointertool").click(function () {
+        setActiveTool("pointer");
+        $(".exportable").css("cursor", "default");
+    });
+
+    $("#boxtool").click(function () {
+        setActiveTool("box");
+        $(".exportable").css("cursor", "crosshair");
+    });
+
+    $("#deletetool").click(function () {
+        setActiveTool("delete");
+        $(".exportable").css("cursor", "default");
+    });
+
+    $("#areatool").click(function () {
+        setActiveTool("area");
+        $(".exportable").css("cursor", "crosshair");
+    });
 
     $("#showbounds").click(function () {
         if ($("#showbounds").hasClass("selected")) {
@@ -39,10 +54,8 @@ $(document).ready(function () {
 });
 
 function setActiveTool(tool) {
-    return function () {
-        $(".tool").removeClass("active-tool").removeAttr("clicknum");
-        $("#" + tool + "tool").addClass("active-tool");
-    }
+    $(".tool").removeClass("active-tool").removeAttr("clicknum");
+    $("#" + tool + "tool").addClass("active-tool");
 }
 
 function getActiveTool() {
@@ -57,12 +70,14 @@ function registerPageClickEvent() {
                     if ($("#areatool").attr("clicknum") != 1) {
                         // First click -- set top left corner
                         $("#areatool").attr({"top": event.pageY, "left": event.pageX, "clicknum": 1});
+                        $(".exportable").css("cursor", "cell");
                     } else {
                         // Second click -- create textbox
                         $("#areatool").attr("clicknum", 0);
                         var top = $("#areatool").attr("top");
                         var left = $("#areatool").attr("left");
                         addTextArea(top, left, event.pageY, event.pageX);
+                        $(".exportable").css("cursor", "crosshair");
                     }
                 }
             case "deletetool":
