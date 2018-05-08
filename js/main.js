@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    // Load document from storage if available
+    loadDocument();
+
     $( ".draggable" ).draggable();
 
     // add new textbox and make it draggable
@@ -16,6 +19,18 @@ $(document).ready(function () {
        exportThis();
     });
 });
+
+function loadDocument() {
+    var doc = localStorage.getItem("document");
+    if (doc) {
+        $(".exportable").html(doc);
+        exportThis();
+    }
+}
+
+function saveDocument() {
+    localStorage.setItem("document", $(".exportable").html());
+}
 
 // Cleans all non-style related tags from the html to output
 function cleanHTML(html) {
@@ -35,5 +50,6 @@ function cleanHTML(html) {
 }
 
 function exportThis() {
+    saveDocument();
     $(".output textarea").val(cleanHTML($(".exportable").html()));
 }
