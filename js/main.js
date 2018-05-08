@@ -69,7 +69,7 @@ function registerPageClickEvent() {
 }
 
 function addTextbox(top, left) {
-    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable textfield' contenteditable>New Textbox</p>\n"
+    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
     $(".page1").append(textboxHTML);
     $(".draggable").draggable();
 }
@@ -87,23 +87,13 @@ function saveDocument() {
 }
 
 // Cleans all non-style related tags from the html to output
-function cleanHTML(html) {
-    var divNode = $.parseHTML(html)[0];
-    var output = '<div class="' + divNode.className + '">\n';
-
-    $.each(divNode.children, function (index, node) {
-        for (let i; i = node.attributes.length - 1; i--) {
-            if (node.attributes[i].name != "style") {
-                node.removeAttribute(node.attributes[i].name);
-            }
-        }
-        output += node.outerHTML + "\n";
-    });
-
-    return output + "</div>";
+function cleanHTML(element) {
+    var divNode = element.clone();
+    divNode.find("p").removeAttr("class").removeAttr("contenteditable");
+    return divNode[0].innerHTML;
 }
 
 function exportThis() {
     saveDocument();
-    $(".output textarea").val(cleanHTML($(".exportable").html()));
+    $(".output textarea").val(cleanHTML($(".exportable")));
 }
