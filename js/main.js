@@ -1,22 +1,19 @@
 $(document).ready(function () {
     // Load document from storage if available
     loadDocument();
+    registerPageClickEvent();
 
     $( ".draggable" ).draggable();
 
     // add new textbox and make it draggable
     $("#new-text").click(function () {
-        $(".page1").append("\n<p style='top:100px;left:100px' class='draggable' contenteditable>New Textbox</p>\n");
-        $(".draggable").draggable();
+        addTextbox(100, 100);
     });
 
     $("#reset").click(function () {
         $(".exportable").html('<div class="page1"></div>');
         exportThis();
-    })
-
-    $(".page1").click(function () {
-        exportThis();
+        registerPageClickEvent();
     });
 
     // export all the positions of the new textboxes
@@ -24,6 +21,18 @@ $(document).ready(function () {
        exportThis();
     });
 });
+
+function registerPageClickEvent() {
+    $(".page1").click(function (event) {
+        exportThis();
+    });
+}
+
+function addTextbox(top, left) {
+    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable' contenteditable>New Textbox</p>\n"
+    $(".page1").append(textboxHTML);
+    $(".draggable").draggable();
+}
 
 function loadDocument() {
     var doc = localStorage.getItem("document");
