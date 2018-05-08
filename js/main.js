@@ -25,6 +25,16 @@ $(document).ready(function () {
     $("#pointertool").click(setActiveTool("pointer"));
     $("#boxtool").click(setActiveTool("box"));
     $("#deletetool").click(setActiveTool("delete"));
+
+    $("#showbounds").click(function () {
+        if ($("#showbounds").hasClass("selected")) {
+            $("#showbounds").removeClass("selected");
+            $(".textfield").removeClass("bordered");
+        } else {
+            $("#showbounds").addClass("selected");
+            $(".textfield").addClass("bordered");
+        }
+    });
 });
 
 function setActiveTool(tool) {
@@ -59,7 +69,7 @@ function registerPageClickEvent() {
 }
 
 function addTextbox(top, left) {
-    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable' contenteditable>New Textbox</p>\n"
+    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable textfield' contenteditable>New Textbox</p>\n"
     $(".page1").append(textboxHTML);
     $(".draggable").draggable();
 }

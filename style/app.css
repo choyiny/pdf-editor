@@ -4,7 +4,7 @@ body {
 
 .toolbar {
     position: fixed;
-    height: 410px;
+    height: 450px;
     width: 61px;
     background-color: #d2d2d2;
     right: 538px;
@@ -31,6 +31,14 @@ body {
 
 .active-tool {
     background-color: red;
+}
+
+.selected {
+    background-color: red;
+}
+
+.bordered {
+    border: 1px solid blue;
 }
 
 .action-text {
