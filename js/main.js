@@ -25,6 +25,7 @@ $(document).ready(function () {
     $("#pointertool").click(setActiveTool("pointer"));
     $("#boxtool").click(setActiveTool("box"));
     $("#deletetool").click(setActiveTool("delete"));
+    $("#areatool").click(setActiveTool("area"));
 
     $("#showbounds").click(function () {
         if ($("#showbounds").hasClass("selected")) {
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
 function setActiveTool(tool) {
     return function () {
-        $(".tool").removeClass("active-tool");
+        $(".tool").removeClass("active-tool").removeAttr("clicknum");
         $("#" + tool + "tool").addClass("active-tool");
     }
 }
@@ -51,8 +52,19 @@ function getActiveTool() {
 function registerPageClickEvent() {
     $(".page1").click(function (event) {
         switch(getActiveTool()) {
-            case "pointertool":
-                break;
+            case "areatool":
+                if (event.target == this) {
+                    if ($("#areatool").attr("clicknum") != 1) {
+                        // First click -- set top left corner
+                        $("#areatool").attr({"top": event.pageY, "left": event.pageX, "clicknum": 1});
+                    } else {
+                        // Second click -- create textbox
+                        $("#areatool").attr("clicknum", 0);
+                        var top = $("#areatool").attr("top");
+                        var left = $("#areatool").attr("left");
+                        addTextArea(top, left, event.pageY, event.pageX);
+                    }
+                }
             case "deletetool":
                 if (event.target.tagName == "P") {
                     event.target.remove();
@@ -69,8 +81,16 @@ function registerPageClickEvent() {
 }
 
 function addTextbox(top, left) {
-    var textboxHTML = "\n<p style='top:" + top + "px;left:" + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
+    var textboxHTML = "\n<p style='top: " + top + "px;left: " + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
     $(".page1").append(textboxHTML);
+    $(".draggable").draggable();
+}
+
+function addTextArea(top, left, bottom, right) {
+    var width = right - left;
+    var height = bottom - top;
+    var textAreaHTML = "\n<p style='top: " + top + "px;left: " + left + "px; width: " + width + "px; height: " + height + "px;'  class='draggable textfield' contenteditable>New Text Area</p>"
+    $(".page1").append(textAreaHTML);
     $(".draggable").draggable();
 }
 
