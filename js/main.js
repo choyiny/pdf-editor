@@ -51,6 +51,14 @@ $(document).ready(function () {
             $(".textfield").addClass("bordered");
         }
     });
+
+    $("#loadimg").click(function () {
+        $(".page1").css("background-image", "url(" + $("#imgfield").val() + ")");
+    });
+
+    $("#defaultimg").click(function () {
+        $(".page1").css("background-image", 'url("../assets/ccac_page1.png")')
+    });
 });
 
 function setActiveTool(tool) {
@@ -124,7 +132,7 @@ function saveDocument() {
 // Cleans all non-style related tags from the html to output
 function cleanHTML(element) {
     var divNode = element.clone();
-    divNode.find("p").removeAttr("class").removeAttr("contenteditable");
+    divNode.find("div").removeAttr("style").find("p").removeAttr("class").removeAttr("contenteditable");
     return divNode[0].innerHTML;
 }
 
