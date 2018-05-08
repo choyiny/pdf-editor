@@ -27,6 +27,11 @@ $(document).ready(function () {
         $(".exportable").css("cursor", "default");
     });
 
+    $("#checktool").click(function () {
+        setActiveTool("check");
+        $(".exportable").css("cursor", "crosshair");
+    });
+
     $("#boxtool").click(function () {
         setActiveTool("box");
         $(".exportable").css("cursor", "crosshair");
@@ -88,6 +93,7 @@ function registerPageClickEvent() {
                         $(".exportable").css("cursor", "crosshair");
                     }
                 }
+                break;
             case "deletetool":
                 if (event.target.tagName == "P") {
                     event.target.remove();
@@ -98,9 +104,21 @@ function registerPageClickEvent() {
                     addTextbox(event.pageY, event.pageX);
                 }
                 break;
+            case "checktool":
+                if (event.target == this) {
+                    // Offset to center the checkbox
+                    tickCheckbox(event.pageY - 8, event.pageX - 5);
+                }
+                break;
         }
         exportThis();
     });
+}
+
+function tickCheckbox(top, left) {
+    var tickHtml = "\n<p style='top: " + top + "px;left: " + left + "px' class='draggable textfield'>&#10003;</p>"
+    $(".page1").append(tickHtml);
+    $(".draggable").draggable();
 }
 
 function addTextbox(top, left) {
