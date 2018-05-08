@@ -151,7 +151,10 @@ function saveDocument() {
 function cleanHTML(element) {
     var divNode = element.clone();
     divNode.find("div").removeAttr("style").find("p").removeAttr("class").removeAttr("contenteditable");
-    return divNode[0].innerHTML;
+    divNode.find("p").map(function (index, element) {
+        element.innerHTML = "<%= " + element.innerHTML + " %>"
+    });
+    return divNode[0].innerHTML.replace(new RegExp("&lt;", "g"), "<").replace(new RegExp("&gt;", "g"), ">");
 }
 
 function exportThis() {
