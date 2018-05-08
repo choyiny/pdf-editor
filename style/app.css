@@ -29,6 +29,10 @@ body {
     cursor: pointer;
 }
 
+.active-tool {
+    background-color: red;
+}
+
 .action-text {
     display: inline-block;
     color: white;

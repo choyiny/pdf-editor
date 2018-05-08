@@ -2,6 +2,7 @@ $(document).ready(function () {
     // Load document from storage if available
     loadDocument();
     registerPageClickEvent();
+    setActiveTool("pointer")();
 
     $( ".draggable" ).draggable();
 
@@ -20,12 +21,35 @@ $(document).ready(function () {
     $("#export").click(function () {
        exportThis();
     });
+
+    $("#pointertool").click(setActiveTool("pointer"));
+    $("#boxtool").click(setActiveTool("box"));
+    $("#deletetool").click(setActiveTool("delete"));
 });
+
+function setActiveTool(tool) {
+    return function () {
+        $(".tool").removeClass("active-tool");
+        $("#" + tool + "tool").addClass("active-tool");
+    }
+}
+
+function getActiveTool() {
+    return $(".active-tool")[0].id;
+}
 
 function registerPageClickEvent() {
     $(".page1").click(function (event) {
-        if (event.target == this) {
-            addTextbox(event.pageY, event.pageX);
+        switch(getActiveTool()) {
+            case "pointertool":
+                break;
+            case "deletetool":
+                break;
+            case "boxtool":
+                if (event.target == this) {
+                    addTextbox(event.pageY, event.pageX);
+                }
+                break;
         }
         exportThis();
     });
