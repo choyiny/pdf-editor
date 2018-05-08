@@ -10,6 +10,11 @@ $(document).ready(function () {
         $(".draggable").draggable();
     });
 
+    $("#reset").click(function () {
+        $(".exportable").html('<div class="page1"></div>');
+        exportThis();
+    })
+
     $(".page1").click(function () {
         exportThis();
     });
