@@ -68,7 +68,7 @@ $(document).ready(function () {
     });
 
     $("#defaultimg").click(function () {
-        $(".page1").css("background-image", 'url("../assets/ccac_page1.png")')
+        $(".page1").css("background-image", 'url("./assets/ccac_page1.png")')
     });
 });
 
