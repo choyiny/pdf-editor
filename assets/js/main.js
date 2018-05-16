@@ -1,8 +1,11 @@
+var DEFAULT_TEXT = 'care_plan_fields[""]';
 $(document).ready(function () {
     // Load document from storage if available
     loadDocument();
     registerPageClickEvent();
     setActiveTool("pointer");
+    
+    $("#text_default").val(DEFAULT_TEXT);
 
     $( ".draggable" ).draggable();
 
@@ -66,9 +69,13 @@ $(document).ready(function () {
     $("#loadimg").click(function () {
         $(".page1").css("background-image", "url(" + $("#imgfield").val() + ")");
     });
+    
+    $("#use_text").click(function () {
+        DEFAULT_TEXT = $("#text_default").val();
+    });
 
     $("#defaultimg").click(function () {
-        $(".page1").css("background-image", 'url("./assets/ccac_page1.png")')
+        $(".page1").css("background-image", 'url("../../assets/images/ccac_page1.png")')
     });
 });
 
@@ -128,7 +135,7 @@ function tickCheckbox(top, left) {
 }
 
 function addTextbox(top, left) {
-    var textboxHTML = "\n<p style='top: " + top + "px; left: " + left + "px' class='draggable textfield' contenteditable>New Textbox</p>"
+    var textboxHTML = "\n<p style='top: " + top + "px; left: " + left + "px' class='draggable textfield' contenteditable>"+ DEFAULT_TEXT +"</p>"
     $(".page1").append(textboxHTML);
     $(".draggable").draggable();
 }
