@@ -4,7 +4,7 @@ $(document).ready(function () {
     loadDocument();
     registerPageClickEvent();
     setActiveTool("pointer");
-    
+
     $("#text_default").val(DEFAULT_TEXT);
 
     $( ".draggable" ).draggable();
@@ -68,14 +68,22 @@ $(document).ready(function () {
 
     $("#loadimg").click(function () {
         $(".page1").css("background-image", "url(" + $("#imgfield").val() + ")");
+        var img = new Image()
+        img.src = $("#imgfield").val()
+        $(".page1").css("width", img.width+'px');
+        $(".page1").css("height", img.height+'px');
     });
-    
+
     $("#use_text").click(function () {
         DEFAULT_TEXT = $("#text_default").val();
     });
 
     $("#defaultimg").click(function () {
-        $(".page1").css("background-image", 'url("../assets/images/ccac_page1.png")')
+        $(".page1").css("background-image", 'url("./assets/images/ccac_page1.png")')
+        var img = new Image()
+        img.src = './assets/images/ccac_page1.png';
+        $(".page1").css("width", img.width+'px');
+        $(".page1").css("height", img.height+'px');
     });
 });
 
