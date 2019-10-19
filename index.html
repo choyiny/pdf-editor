@@ -47,8 +47,9 @@
         <div class="output">
             <textarea></textarea>
             <div class="imgform">
-                <input id="imgfield" type="text" placeholder="Paste image url here"></input>
-                <button id="loadimg">Load Image</button>
+                <!-- <input id="imgfield" type="text" placeholder="Paste image url here"></input> -->
+                <!-- <button id="loadimg">Load Image</button> -->
+                <input id="browseimg" type="file" name="bg" accept="image/*" onchange="loadbg(this)"></button>
                 <button id="defaultimg">Back to Default</button>
             </div>
             <div class="textform">
