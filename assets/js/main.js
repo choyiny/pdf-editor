@@ -84,15 +84,15 @@ function setActiveTool(tool) {
     $("#" + tool + "tool").addClass("active-tool");
 }
 
-function loadbg(input){
-    if(input.files[0]){
+$("#browseimg").change(function() {
+    if(this.files[0]) {
         var reader = new FileReader();
-        reader.onload = function(e){
+        reader.onload = function(e) {
             $(".page1").css("background-image", "url(" + e.target.result + ")");
         };
-        reader.readAsDataURL(input.files[0])
+        reader.readAsDataURL(this.files[0])
     }
-}
+});
 
 function getActiveTool() {
     return $(".active-tool")[0].id;
