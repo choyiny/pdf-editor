@@ -69,12 +69,23 @@ $(document).ready(function () {
     $("#loadimg").click(function () {
         $(".page1").css("background-image", "url(" + $("#imgfield").val() + ")");
     });
+
+    $("#browseimg").change(function() {
+        if(this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(".page1").css("background-image", "url(" + e.target.result + ")");
+            };
+            reader.readAsDataURL(this.files[0])
+        }
+    });
     
     $("#use_text").click(function () {
         DEFAULT_TEXT = $("#text_default").val();
     });
 
     $("#defaultimg").click(function () {
+        console.log("imgh")
         $(".page1").css("background-image", 'url("../assets/images/ccac_page1.png")')
     });
 });
